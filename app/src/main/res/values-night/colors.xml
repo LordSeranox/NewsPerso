@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="np_accent">#35C4A8</color>
+    <color name="np_bg">#0D1210</color>
+    <color name="np_card">#17201C</color>
+    <color name="np_stroke">#24302A</color>
+    <color name="np_text_primary">#FFFFFF</color>
+    <color name="np_text_secondary">#9AA8A1</color>
+    <color name="np_error">#FF6B6B</color>
+    <color name="np_live">#FF6B6B</color>
+</resources>

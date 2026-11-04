@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.NewsPerso" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/np_accent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Theme.NewsPerso" parent="Base.Theme.NewsPerso" />
+</resources>
