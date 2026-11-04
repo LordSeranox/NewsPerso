@@ -19,18 +19,15 @@
         android:padding="12dp">
 
         <ImageView
-            android:id="@+id/imgPlay"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:contentDescription="@null"
-            android:padding="6dp"
-            android:src="@drawable/ic_play"
-            app:tint="@color/np_accent" />
+            android:id="@+id/imgLogo"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:contentDescription="@null" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -49,5 +46,14 @@
                 android:textColor="@color/np_text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgPlay"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@null"
+            android:padding="4dp"
+            android:src="@drawable/ic_play"
+            app:tint="@color/np_accent" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

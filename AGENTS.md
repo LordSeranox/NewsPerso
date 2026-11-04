@@ -20,11 +20,14 @@ aucun compte, aucune donnée envoyée ailleurs que vers les flux/streams choisis
   (⚠️ le fichier FR contient des échappements `\u2019` littéraux pour les apostrophes — convention à respecter)
 - Thème : couleurs `np_*` dupliquées dans `values/` (clair) et `values-night/` (sombre)
 - Palette accent : vert sarcelle `#0E7C6B` (clair) / `#35C4A8` (sombre)
+- Images : Coil pour les favicons, repli avatar à initiale (`ui/LogoHelper`)
 
 ## Architecture
 
-- `MainActivity` — liste d'articles (pull-to-refresh, recherche, filtre favoris)
-- `RadioActivity` — liste des radios, lecture MediaPlayer (un seul flux à la fois)
+- `MainActivity` — hôte : ViewPager2 (slide Actualités <-> Radio), mini-player en bas
+- `NewsFragment` — liste d'articles (pull-to-refresh, recherche, filtre favoris, aperçu dépliable)
+- `RadioFragment` — liste des radios, contrôle du service
+- `RadioService` — service foreground : MediaPlayer + notification, lecture en tâche de fond
 - `SettingsActivity` — gestion flux/radios, langue, thème, purge favoris
 - `rss/RssParser` — parsing XML (formats RSS 2.0 et Atom)
 - `rss/RssFetcher` — téléchargement HTTP des flux

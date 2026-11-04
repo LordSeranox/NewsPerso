@@ -50,4 +50,7 @@
     <string name="theme_light">Light</string>
     <string name="settings_clear_favorites">Clear “Read later”</string>
     <string name="favorites_cleared">Articles removed</string>
+    <string name="notif_channel_radio">Radio playback</string>
+    <string name="notif_radio_title">Live · %s</string>
+    <string name="notif_radio_text">NewsPerso — tap to return to the app</string>
 </resources>

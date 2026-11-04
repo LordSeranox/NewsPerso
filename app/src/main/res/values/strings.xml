@@ -50,4 +50,7 @@
     <string name="theme_light">Clair</string>
     <string name="settings_clear_favorites">Vider « À lire plus tard »</string>
     <string name="favorites_cleared">Articles retirés</string>
+    <string name="notif_channel_radio">Lecture radio</string>
+    <string name="notif_radio_title">En direct · %s</string>
+    <string name="notif_radio_text">NewsPerso — appuie pour revenir à l’application</string>
 </resources>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.newsperso.app.R
 import com.newsperso.app.data.FavoritesRepository
 import com.newsperso.app.rss.Article
@@ -19,12 +20,20 @@ class ArticleAdapter(
     private val onToggleFavorite: (Article) -> Unit
 ) : RecyclerView.Adapter<ArticleAdapter.VH>() {
 
+    private var logoUrlFor: (Article) -> String = { "" }
+    private val expanded = mutableSetOf<String>()
+
+    fun setLogoLookup(lookup: (Article) -> String) {
+        logoUrlFor = lookup
+    }
+
     fun submit(list: List<Article>, query: String = "") {
         val q = query.trim().lowercase()
         articles = list.filter {
             q.isBlank() || it.title.lowercase().contains(q) ||
                 it.source.lowercase().contains(q)
         }
+        expanded.retainAll(list.map { it.link }.toSet())
         notifyDataSetChanged()
     }
 
@@ -40,16 +49,35 @@ class ArticleAdapter(
             val ctx: Context = b.root.context
             b.txtTitle.text = a.title
             b.txtMeta.text = buildMetaText(ctx, a)
+
+            val isExpanded = a.link in expanded
+            b.txtPreview.text = a.description
+            b.txtPreview.maxLines = if (isExpanded) 12 else 2
+
+            val fallback = LogoHelper.letterDrawable(ctx, a.source)
+            b.imgLogo.load(logoUrlFor(a)) {
+                placeholder(fallback)
+                error(fallback)
+            }
+
             val fav = favorites.isFavorite(a)
             b.btnFavorite.setImageResource(if (fav) R.drawable.ic_star else R.drawable.ic_star_border)
             b.btnFavorite.setColorFilter(
                 if (fav) ContextCompat.getColor(ctx, R.color.np_accent)
                 else ContextCompat.getColor(ctx, R.color.np_text_secondary)
             )
+
             b.btnOpen.setOnClickListener { onOpen(a) }
             b.btnShare.setOnClickListener { onShare(a) }
             b.btnFavorite.setOnClickListener { onToggleFavorite(a) }
-            b.root.setOnClickListener { onOpen(a) }
+            b.root.setOnClickListener {
+                if (!expanded.remove(a.link)) {
+                    expanded.add(a.link)
+                    notifyItemChanged(bindingAdapterPosition)
+                } else {
+                    onOpen(a)
+                }
+            }
         }
 
         private fun buildMetaText(ctx: Context, a: Article): String {
